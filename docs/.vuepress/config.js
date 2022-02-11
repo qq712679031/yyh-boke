@@ -20,13 +20,30 @@ module.exports = {
                             '/MQ/kafka/sasl/kafkaSaslPlain.md',
                         ],
                     },
-                    // {
-                    //     text: 'RabbitMQ',
-                    //     children: [
-                    //         '/zh/reference/bundler/vite.md',
-                    //         '/zh/reference/bundler/webpack.md',
-                    //     ],
-                    // },
+                ],
+            },
+            {
+                text: '数据迁移',
+                children: [
+                    '/dataMigration',
+                    {
+                        text: 'mysql',
+                        children: [
+                            '/dataMigration/mysql/mysqlDump.md',
+                        ],
+                    },
+                    {
+                        text: 'redis',
+                        children: [
+                            '/dataMigration/redis/redisAOF.md',
+                        ],
+                    },
+                    {
+                        text: 'ssdb',
+                        children: [
+                            '/dataMigration/ssdb/ssdbToredis.md',
+                        ],
+                    },
                 ],
             }
         ],
