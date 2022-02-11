@@ -1,7 +1,7 @@
 module.exports = {
     // 站点配置
     lang: 'zh-CN',
-    title: '你好！',
+    title: '大数据知识点集锦',
     description: '这是我的第一个 VuePress 站点',
 
     // 主题和它的配置
@@ -23,15 +23,20 @@ module.exports = {
                 ],
             },
             {
-                text: '数据迁移',
+                text: '数据库',
                 children: [
-                    '/dataMigration',
                     {
                         text: 'mysql',
                         children: [
-                            '/dataMigration/mysql/mysqlDump.md',
+                            '/database/mysql/mysqlDump.md',
                         ],
                     },
+                ],
+            },
+            {
+                text: '数据迁移',
+                children: [
+                    '/dataMigration',
                     {
                         text: 'redis',
                         children: [
