@@ -47,4 +47,10 @@ description: kafka基本命令
    注意：彻底删除一个topic，需要在server.properties中配置delete.topic.enable=true，否则只是标记删除
    配置完成之后，需要重启kafka服务。
 ```
-   
+
+
+
+
+```
+
+```

@@ -28,7 +28,7 @@ module.exports = {
                     {
                         text: 'mysql',
                         children: [
-                            '/database/mysql/mysqlDump.md',
+                            '/sqlDatabase/mysql/mysqlDump.md',
                         ],
                     },
                 ],
@@ -39,13 +39,13 @@ module.exports = {
                     {
                         text: 'redis',
                         children: [
-                            '/dataMigration/redis/redisAOF.md',
+                            '/noSqlDatabase/redis/redisAOF.md',
                         ],
                     },
                     {
                         text: 'ssdb',
                         children: [
-                            '/dataMigration/ssdb/ssdbToredis.md',
+                            '/noSqlDatabase/ssdb/ssdbToredis.md',
                         ],
                     },
                 ],
