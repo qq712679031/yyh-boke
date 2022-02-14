@@ -23,7 +23,7 @@ module.exports = {
                 ],
             },
             {
-                text: '数据库',
+                text: 'sql数据库',
                 children: [
                     {
                         text: 'mysql',
@@ -34,9 +34,8 @@ module.exports = {
                 ],
             },
             {
-                text: '数据迁移',
+                text: 'nosql数据库',
                 children: [
-                    '/dataMigration',
                     {
                         text: 'redis',
                         children: [
@@ -49,6 +48,12 @@ module.exports = {
                             '/dataMigration/ssdb/ssdbToredis.md',
                         ],
                     },
+                ],
+            },
+            {
+                text: '数据迁移',
+                children: [
+                    '/dataMigration',
                 ],
             }
         ],
