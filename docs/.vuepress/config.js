@@ -1,62 +1,16 @@
+const navConfig =  require("./configs/navConfig");
+const sidebarConfig =  require("./configs/sidebarConfig");
+
 module.exports = {
     // 站点配置
     lang: 'zh-CN',
     title: '大数据知识点集锦',
-    description: '这是我的第一个 VuePress 站点',
-
     // 主题和它的配置
     theme: '@vuepress/theme-default',
     themeConfig: {
         // logo: 'https://vuejs.org/images/logo.png',
         //导航栏
-        navbar: [
-            {
-                text: '消息队列',
-                children: [
-                    {
-                        text: 'kafka',
-                        children: [
-                            '/MQ/kafka/kafkaCommand.md',
-                            '/MQ/kafka/sasl/kafkaSaslPlain.md',
-                        ],
-                    },
-                ],
-            },
-            {
-                text: 'sql数据库',
-                children: [
-                    {
-                        text: 'mysql',
-                        children: [
-                            '/sqlDatabase/mysql/mysqlDump.md',
-                        ],
-                    },
-                ],
-            },
-            {
-                text: 'nosql数据库',
-                children: [
-                    {
-                        text: 'redis',
-                        children: [
-                            '/noSqlDatabase/redis/redisAOF.md',
-                        ],
-                    },
-                    {
-                        text: 'ssdb',
-                        children: [
-                            '/noSqlDatabase/ssdb/ssdbToredis.md',
-                        ],
-                    },
-                ],
-            },
-            {
-                text: '数据迁移',
-                children: [
-                    '/dataMigration',
-                ],
-            }
-        ],
+        navbar: navConfig,
         //侧边栏
         // sidebar: {
         //     '/zh/guide/': [
