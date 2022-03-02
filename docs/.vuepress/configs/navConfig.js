@@ -1,5 +1,23 @@
 const nav = [
     {
+        text: '大数据架构知识点',
+        children: [
+            {
+                text: '数据湖',
+                children: [
+                    '/dataLake'
+                ],
+            },
+            {
+                text: '大数据架构',
+                children: [
+                    '/architecture/lambda.md',
+                    '/architecture/kappa.md',
+                ],
+            },
+        ],
+    },
+    {
         text: 'hadoop',
         children: [
             {
@@ -49,13 +67,25 @@ const nav = [
                     '/noSqlDatabase/ssdb/ssdbToredis.md',
                 ],
             },
+            {
+                text: 'impala',
+                children: [
+                    '/noSqlDatabase/impala/README.md',
+                ],
+            },
+            {
+                text: 'kudu',
+                children: [
+                    '/noSqlDatabase/kudu/README.md',
+                ],
+            },
         ],
     },
-    {
-        text: '数据迁移',
-        children: [
-            '/dataMigration',
-        ],
-    }
+    // {
+    //     text: '数据迁移',
+    //     children: [
+    //         '/dataMigration',
+    //     ],
+    // }
 ];
 module.exports = nav;
