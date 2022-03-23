@@ -106,158 +106,9 @@ description: impala基础入门
     * 3、解析sql语句，生成查询任务，最后把任务分发到不同的impalad节点进行分布式查询计算
     * 4、把查询到的结果汇总之后，返回给客户端
 
-### 2、impala集群安装部署
+### 2、impala集群的启动和停止
 
-#### 2.1 安装规划
-
-| 服务名称           | node1  | node2  | node3 |
-| ------------------ | ------ | ------ | ----- |
-| impala-catalog     | 不安装 | 不安装 | 安装  |
-| impala-state-store | 不安装 | 不安装 | 安装  |
-| impala-server      | 安装   | 安装   | 安装  |
-| impala             | 安装   | 安装   | 安装  |
-
-#### 2.2 yum源安装
-
-* 主节点node3执行以下命令进行安装
-
-  ~~~shell
-  yum install impala -y
-  yum install impala-server -y
-  yum install impala-state-store -y
-  yum install impala-catalog -y
-  yum install bigtop-utils -y 
-  yum install impala-shell -y
-  ~~~
-
-* 从节点node1和node2执行以下命令进行安装
-
-  ~~~shell
-  yum install impala-server -y
-  yum install bigtop-utils -y 
-  ~~~
-
-#### 2.3 修改配置信息
-
-##### 2.3.1 修改 hive-site.xml文件
-
-impala依赖于hive，所以首先需要进行hive的配置修改；
-
-- node1机器修改hive-site.xml内容如下:
-
-- vim /export/servers/hive-1.1.0-cdh5.14.0/conf/hive-site.xml
-
-```xml
-
-<property>
-    <name>hive.metastore.uris</name>
-    <value>thrift:/node01:9083</value>
-</property>
-<property>
-<name>hive.metastore.client.socket.timeout</name>
-<value>3600</value>
-</property>
-```
-
-##### 2.3.2 将hive的安装目录发送到node2与node3上
-
-* 在node1上执行命令
-
-  ~~~shell
-  cd /export/servers/
-  scp -r hive-1.1.0-cdh5.14.0/ node02:$PWD
-  scp -r hive-1.1.0-cdh5.14.0/ node03:$PWD
-  ~~~
-
-##### 2.3.3 启动hive的metastore服务
-
-* 在node1上启动hive的metastore服务
-
-  ~~~shell
-  cd /export/servers/hive-1.1.0-cdh5.14.0
-  nohup bin/hive --service metastore &
-  ~~~
-
-* 注意：一定要保证mysql的服务正常启动，否则metastore的服务不能够启动
-
-##### 2.3.4 所有hadoop节点修改hdfs-site.xml文件
-
-* 所有节点创建文件夹
-    - mkdir -p /var/run/hdfs-sockets
-* 修改所有节点的hdfs-site.xml添加以下配置，修改完之后重启hdfs集群生效
-    * vim /export/servers/hadoop-2.6.0-cdh5.14.0/etc/hadoop/hdfs-site.xml
-
-~~~xml
-         <!--短路读取就是允许impala把一些信息存储在本地磁盘上，可以加快计算的速度-->
-<property>
-    <name>dfs.client.read.shortcircuit</name>
-    <value>true</value>
-</property>
-        <!--打开块位置的存储的元数据信息-->
-<property>
-<name>dfs.datanode.hdfs-blocks-metadata.enabled</name>
-<value>true</value>
-</property>
-        <!--Datanode和DFSClient之间沟通的Socket的本地文件路径-->
-<property>
-<name>dfs.domain.socket.path</name>
-<value>/var/run/hdfs-sockets/dn</value>
-</property>
-        <!--分布式文件系统中并行RPC的超时-->
-<property>
-<name>dfs.client.file-block-storage-locations.timeout.millis</name>
-<value>10000</value>
-</property>
-~~~
-
-##### 2.3.5 重启hdfs
-
-* start-dfs.sh
-
-##### 2.3.6 创建hadoop与hive的配置文件的连接
-
-* impala的配置目录为 /etc/impala/conf
-    * 这个路径下面需要把 core-site.xml、hdfs-site.xml、hive-site.xml拷贝到这里来，但是我们这里使用软连接的方式会更好。
-    * 所有节点执行以下命令创建链接到impala配置目录下来
-
-~~~~shell
-ln -s /export/servers/hadoop-2.6.0-cdh5.14.0/etc/hadoop/core-site.xml /etc/impala/conf/core-site.xml
-
-ln -s /export/servers/hadoop-2.6.0-cdh5.14.0/etc/hadoop/hdfs-site.xml  /etc/impala/conf/hdfs-site.xml
-
-ln -s /export/servers/hive-1.1.0-cdh5.14.0/conf/hive-site.xml /etc/impala/conf/hive-site.xml
-~~~~
-
-##### 2.3.7 所有节点修改impala默认配置
-
-* 所有节点修改impala默认配置
-
-* vim /etc/default/impala
-
-  ~~~
-  #指定集群的CATALOG_SERVICE和STATE_STORE服务地址
-  IMPALA_CATALOG_SERVICE_HOST=node3
-  IMPALA_STATE_STORE_HOST=node3
-  ~~~
-
-##### 2.3.8 所有节点创建mysql的驱动包的软连接
-
-~~~shell
-ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /usr/share/java/mysql-connector-java.jar
-~~~
-
-##### 2.3.9 所有节点修改bigtop的java路径
-
-* 修改bigtop的java_home路径
-    * vim /etc/default/bigtop-utils
-
-      ~~~
-      export JAVA_HOME=/export/servers/jdk
-      ~~~
-
-### 3、impala集群的启动和停止
-
-#### 3.1 启动
+#### 2.1 启动
 
 * 1、需要启动HDFS
 
@@ -302,7 +153,7 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
 这个路径下，node3机器上面应该有三个进
 程，node1与node2机器上面只有一个进程，如果进程个数不对，去对应目录下查看报错日志
 
-#### 3.2 停止
+#### 2.2 停止
 
 * 在主节点node3上关闭以下服务
 
@@ -318,7 +169,7 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
   service impala-server stop
   ~~~
 
-### 4、impala的web界面访问
+### 3、impala的web界面访问
 
 * 启动好impala集群之后，可以访问web地址，查看集群相关信息
     * 访问impalad的管理界面http:/node3:25000/
@@ -334,9 +185,9 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
 
   ![1550736004673](/images/impala/1550736004673.png)
 
-### 5、impala的使用
+### 4、impala的使用
 
-#### 5.1 impala-shell的外部命令参数语法
+#### 4.1 impala-shell的外部命令参数语法
 
 * 不需要进入到impala-shell交互命令行当中即可执行的命令参数
 
@@ -384,7 +235,7 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
 
   ![1556000574723](/images/impala/1556000574723.png)
 
-#### 5.2 impala-shell的内部命令参数语法
+#### 4.2 impala-shell的内部命令参数语法
 
 * 进入impala-shell命令行之后可以执行的语法
 
@@ -436,22 +287,22 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
 (2) 在impala-shell当中插入的数据，在impala当中是可以直接查询到的，不需要刷新数据库，其中使用的就是catalog这个服务的功能实现的，catalog是impala1.2版本之后增加的模块功能，主要作用就是同步impala之间的元数据.
 ~~~
 
-#### 5.3 创建数据库
+#### 4.3 创建数据库
 
 * impala-shell进入到impala的交互窗口
 
-##### 5.3.1 查看所有数据库
+##### 4.3.1 查看所有数据库
 
 * show databases;
 
-##### 5.3.2 创建与删除数据库
+##### 4.3.2 创建与删除数据库
 
 * 创建数据库
     * create database if not exists mydb1;
 * 删除数据库
     * drop database if exists mydb1;
 
-#### 5.4 创建表
+#### 4.4 创建表
 
 * 创建表的语法跟hive一样
 
@@ -465,7 +316,7 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
   
   ~~~
 
-#### 5.5 向表中加载数据
+#### 4.5 向表中加载数据
 
 * insert语句插入数据
 
@@ -495,19 +346,19 @@ insert into student1 values (4, 'laowang', 45 );
   insert  into  user1 select * from user2;
   ~~~
 
-#### 5.6 查询数据
+#### 4.6 查询数据
 
 ~~~
 select * from student1;
 ~~~
 
-#### 5.7 清空表数据
+#### 4.7 清空表数据
 
 ~~~
 truncate  student1;
 ~~~
 
-#### 5.8 删除表数据
+#### 4.8 删除表数据
 
 ~~~
 drop table student1；

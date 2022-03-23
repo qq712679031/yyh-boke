@@ -1,5 +1,4 @@
----
+---   
 home: true
+heroImage:
 ---
-
-# Hello VuePress
