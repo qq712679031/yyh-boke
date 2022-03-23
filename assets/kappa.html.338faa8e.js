@@ -1,0 +1,1 @@
+const a={key:"v-93b934de",path:"/architecture/kappa.html",title:"kappa\u67B6\u6784",lang:"zh-CN",frontmatter:{lang:"zh-CN",title:"kappa\u67B6\u6784",description:"kappa\u67B6\u6784"},excerpt:"",headers:[],git:{updatedTime:1646205417e3,contributors:[{name:"yangyunhuang",email:"qq712679031@qq.com",commits:1}]},filePathRelative:"architecture/kappa.md"};export{a as data};

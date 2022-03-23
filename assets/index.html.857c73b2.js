@@ -1,0 +1,1 @@
+const a={key:"v-8daa1a0e",path:"/",title:"",lang:"zh-CN",frontmatter:{home:!0,heroImage:null},excerpt:"",headers:[],git:{updatedTime:164801804e4,contributors:[{name:"yangyunhuang",email:"qq712679031@qq.com",commits:1},{name:"yangyunhuang",email:"yangyunhuang@zhugeio.com",commits:1}]},filePathRelative:"README.md"};export{a as data};
