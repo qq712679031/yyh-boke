@@ -59,6 +59,7 @@ const nav = [
                 text: 'redis',
                 children: [
                     '/noSqlDatabase/redis/redisAOF.md',
+                    '/noSqlDatabase/redis/redisShake.md',
                 ],
             },
             {
@@ -77,6 +78,7 @@ const nav = [
                 text: 'kudu',
                 children: [
                     '/noSqlDatabase/kudu/README.md',
+                    '/noSqlDatabase/kudu/kuduUpgrade.md'
                 ],
             },
         ],
