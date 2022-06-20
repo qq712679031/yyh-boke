@@ -35,6 +35,7 @@ const nav = [
             {
                 text: 'kafka',
                 children: [
+                    '/MQ/kafka/kafka.md',
                     '/MQ/kafka/kafkaCommand.md',
                     '/MQ/kafka/sasl/kafkaSaslPlain.md',
                 ],
