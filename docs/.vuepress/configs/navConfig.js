@@ -30,6 +30,18 @@ const nav = [
         ],
     },
     {
+        text: '语言',
+        children: [
+            {
+                text: 'java',
+                children: [
+                    '/language/java/JVM.md',
+                    '/language/scala/distcp.md',
+                ],
+            },
+        ],
+    },
+    {
         text: '消息队列',
         children: [
             {
