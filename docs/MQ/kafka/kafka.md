@@ -1,3 +1,8 @@
+---
+lang: zh-CN
+title: kafka基本命令
+description: kafka基本命令
+---
 ### kafka常用命令梳理
 > 参考链接（http://orchome.com/454）
 * 启动kafka server

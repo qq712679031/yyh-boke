@@ -12,7 +12,7 @@ description: impala基础入门
   号称是当前大数据领域最快的查询sql工具。
 
 * ​ impala是参照谷歌的新三篇论文（Caffeine--网络搜索引擎、Pregel--分布式图计算、Dremel--交互式分析工具）当中的
-  实现而来，其中旧三篇论文分别是（BigTable，GFS，MapReduce）分别对应我们即将学的HBase和已经学过的HDFS以及MapReduce。
+  实现而来，其中旧三篇论文分别是（BigTable，GFS，MapReduce)。
 
 * ​ impala是基于hive并使用内存进行计算，兼顾数据仓库，具有实时，批处理，多并发等优点 。
 
@@ -54,7 +54,7 @@ description: impala基础入门
 
 #### 1.4 impala架构和查询过程
 
-![20171105084851619](/images/impala/20171105084851619.png)
+![20171105084851619](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/20171105084851619.png)
 
 * **impala架构说明**
 
@@ -97,7 +97,7 @@ description: impala基础入门
         * Impala daemon不间断的跟statestore进行通信交流，从而确认哪个节点是健康的能接收新的工作任务。它同时接收catalogd daemon（从Impala
           1.2之后支持）传来的广播消息来更新元数据信息，当集群中的任意节点create、alter、drop任意对象、或者执行INSERT、LOAD DATA的时候触发广播消息
 
-![img](/images/impala/092100494176141.png)
+![img](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/092100494176141.png)
 
 * **impala查询过程**
     * 0、启动好impala集群，然后impalad服务都会向impala state store注册和订阅，然后state store服务监控每一个impalad的健康状态。
@@ -147,7 +147,7 @@ description: impala基础入门
   ps -ef | grep impala
   ~~~
 
-![img](/images/impala/1550735579716.png)
+![img](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1550735579716.png)
 
 注意：启动之后所有关于impala的日志默认都在 /var/log/impala  
 这个路径下，node3机器上面应该有三个进
@@ -174,16 +174,16 @@ description: impala基础入门
 * 启动好impala集群之后，可以访问web地址，查看集群相关信息
     * 访问impalad的管理界面http:/node3:25000/
 
-![1550735908605](/images/impala/1550735908605.png)
+![1550735908605](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1550735908605.png)
 
 * 访问statestored的管理界面http:/node3:25010/
 
-  ![1550735957214](/images/impala/1550735957214.png)
+  ![1550735957214](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1550735957214.png)
 
 
 * 访问catalogd 的管理界面http:/node3:25020/
 
-  ![1550736004673](/images/impala/1550736004673.png)
+  ![1550736004673](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1550736004673.png)
 
 ### 4、impala的使用
 
@@ -195,15 +195,15 @@ description: impala基础入门
 
     * -h 查看帮助文档
 
-      ![1555999818766](/images/impala/1555999818766.png)
+      ![1555999818766](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1555999818766.png)
 
     * -v 查看对应版本
 
-      ![1556000095985](/images/impala/1556000095985.png)
+      ![1556000095985](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556000095985.png)
 
     * -r 刷新整个元数据，数据量大的时候，比较消耗服务器性能
 
-      ![1556000019262](/images/impala/1556000019262.png)
+      ![1556000019262](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556000019262.png)
 
     * -B 去格式化，查询大量数据可以提高性能
 
@@ -221,7 +221,7 @@ description: impala基础入门
 
     * impala-shell -f impala-shell.sql
 
-      ![1556000424758](/images/impala/1556000424758.png)
+      ![1556000424758](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556000424758.png)
 
 * -i 连接到impalad
 
@@ -233,7 +233,7 @@ description: impala基础入门
 
     * impala-shell -f impala-shell.sql -o hello.txt
 
-  ![1556000574723](/images/impala/1556000574723.png)
+  ![1556000574723](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556000574723.png)
 
 #### 4.2 impala-shell的内部命令参数语法
 
@@ -243,13 +243,13 @@ description: impala基础入门
 
         * 帮助文档
 
-          ![1556030753137](/images/impala/1556030753137.png)
+          ![1556030753137](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556030753137.png)
 
     * connect
 
         * connect hostname 连接到某一台机器上面去执行
 
-          ![1556030802409](/images/impala/1556030802409.png)
+          ![1556030802409](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556030802409.png)
 
           
 
@@ -259,13 +259,13 @@ description: impala基础入门
 
         * refresh dbname.tablename 增量刷新，刷新某一张表的元数据，主要用于刷新hive当中数据表里面的数据改变的情况
 
-          ![1556030895715](/images/impala/1556030895715.png)
+          ![1556030895715](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556030895715.png)
 
     * invalidate metadata
 
         * invalidate metadata全量刷新，性能消耗较大，主要用于hive当中新建数据库或者数据库表的时候来进行刷新
 
-          ![1556030978124](/images/impala/1556030978124.png)
+          ![1556030978124](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556030978124.png)
 
     * explain
 
@@ -273,13 +273,13 @@ description: impala基础入门
 
             * explain select * from default.employee;
 
-          ![1556031055194](/images/impala/1556031055194.png)
+          ![1556031055194](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556031055194.png)
 
         * explain的值可以设置成0,1,2,3等几个值，其中3级别是最高的，可以打印出最全的信息
 
             * set explain_level=3;
 
-          ![1556031157316](/images/impala/1556031157316.png)
+          ![1556031157316](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/impala/1556031157316.png)
 
 ~~~
 注意:

@@ -22,7 +22,7 @@ description: kudu基础入门
 
 
 
-![img](/images/kudu/2717543-04110b9fe00113a6.png)
+![img](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/2717543-04110b9fe00113a6.png)
 
 
 如上图所示，数据实时写入 HBase，实时的数据更新也在 HBase 完成，为了应对 OLAP 需求，我们定时（通常是 T+1 或者 T+H）将 HBase 数据写成静态的文件（如：Parquet）导入到 OLAP 引擎（如：HDFS）。这一架构能满足既需要随机读写，又可以支持 OLAP 分析的场景，但他有如下缺点：
@@ -38,7 +38,7 @@ description: kudu基础入门
 
 
 
-![](/images/kudu/2717543-5029a91903381b9d.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/2717543-5029a91903381b9d.png)
 
 
 从上图可以看出，KUDU 是一个折中的产品，在 HDFS 和 HBase 这两个偏科生中平衡了随机读写和批量分析的性能。从 KUDU 的诞生可以说明一个观点：底层的技术发展很多时候都是上层的业务推动的，脱离业务的技术很可能是空中楼阁。
@@ -72,7 +72,7 @@ Kudu支持水平扩展，并且与Cloudera Impala和Apache Spark等当前流行�
 与HDFS和HBase相似，Kudu使用单个的Master节点，用来管理集群的元数据，并且使用任意数量的Tablet Server（可对比理解HBase中的RegionServer角色）节点用来存储实际数据。可以部署多个Master节点来提高容错性。一个table表的数据，被分割成1个或多个Tablet，Tablet被部署在Tablet Server来提供数据读写服务。
 	  
 
-![](/images/kudu/5141839-598de795e2e67284.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/5141839-598de795e2e67284.png)
 
 下面是一些基本概念：
 
@@ -639,11 +639,11 @@ object SparkKuduTest {
 
 来查看Kudu主UI可以找到创建的表，通过单击表ID，能够看到表模式和分区信息。
 
-![1550729068964](/images/kudu/1550729068964.png)
+![1550729068964](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550729068964.png)
 
 点击Table id 可以观察到表的schema等信息：
 
-![1550729141209](/images/kudu/1550729141209.png)
+![1550729141209](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550729141209.png)
 
 ### 4.3 dataFrame操作kudu
 
@@ -958,7 +958,7 @@ Spark与Kudu的集成同时提供了kudu RDD.
 
 ### 5.2 **impala的架构**以及查询计划
 
-![](/images/kudu/20171105084851619.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/20171105084851619.png)
 
 
 
@@ -1034,7 +1034,7 @@ Spark与Kudu的集成同时提供了kudu RDD.
 
 #### 5.3.2 添加mysql的jar包放入hive的lib目录下
 
-![](/images/kudu/mysql.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/mysql.png)
 
 #### 5.3.3 将hive的安装包发送到node2与node3上
 
@@ -1177,7 +1177,7 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
   ps -ef | grep impala
   ~~~
 
-![](/images/kudu/1550735579716.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550735579716.png)
 
 
 
@@ -1190,15 +1190,15 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
 
 * 访问impalad的管理界面http://node3:25000/
 
-  ![](/images/kudu/1550735908605.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550735908605.png)
 
 * 访问statestored的管理界面http://node3:25010/
 
-  ​						            ![](/images/kudu/1550735957214.png)
+  ​						            ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550735957214.png)
 
 * 访问catalogd 的管理界面http://node3:25020/
 
-  ![](/images/kudu/1550736004673.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550736004673.png)
 
 
 
@@ -1215,7 +1215,7 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
 
   如下图：
 
-  ![](/images/kudu/1550752420061.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550752420061.png)
 
 
 # 6、使用impala操作kudu整合
@@ -1231,7 +1231,7 @@ ln -s /export/servers/hive-1.1.0-cdh5.14.0/lib/mysql-connector-java-5.1.35.jar /
   (2)：要退出Impala Shell，请使用以下命令： quit;
   ~~~
 
-  ![](/images/kudu/1550752818836.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550752818836.png)
 
 
 
@@ -1326,11 +1326,11 @@ public class CreateTable {
 
 * 在kudu的页面上可以观察到如下信息：
 
-![](/images/kudu/1550753915817.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550753915817.png)
 
 * 在impala的命令行查看表:
 
-  ![1550754009417](/images/kudu/1550754009417.png)
+  ![1550754009417](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550754009417.png)
 
   * 当前在impala中并没有person这个表
 
@@ -1345,7 +1345,7 @@ public class CreateTable {
       'kudu.master_addresses' = 'node1:7051,node2:7051,node3:7051')
   ~~~
 
-  ![](/images/kudu/1550754186128.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550754186128.png)
 
 ### 6.2 使用impala对kudu进行DML操作
 
@@ -1383,7 +1383,7 @@ public class CreateTable {
   select * from my_first_table
   ~~~
 
-  ![](/images/kudu/1550755125688.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550755125688.png)
 
 * 使用单个语句插入三行
 
@@ -1391,7 +1391,7 @@ public class CreateTable {
   INSERT INTO my_first_table VALUES (1, "john"), (2, "jane"), (3, "jim");
   ~~~
 
-  ![](/images/kudu/1550755323970.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550755323970.png)
 
 
 
@@ -1414,7 +1414,7 @@ public class CreateTable {
   UPDATE my_first_table SET name="xiaowang" where id =1 ;
   ~~~
 
-  ![](/images/kudu/1550755633332.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550755633332.png)
 
 
 
@@ -1426,7 +1426,7 @@ public class CreateTable {
   delete from my_first_table where id =2;
   ~~~
 
-  ![](/images/kudu/1550755737020.png)
+  ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550755737020.png)
 
 ### 6.3 更改表属性
 
@@ -1438,7 +1438,7 @@ public class CreateTable {
 ALTER TABLE PERSON RENAME TO person_temp;
 ~~~
 
-![](/images/kudu/1550755938064.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550755938064.png)
 
 #### 6.3.2 Rename the underlying Kudu table for an internal table ( 重
 新命名内部表的基础 Kudu 表 )
@@ -1471,7 +1471,7 @@ ALTER TABLE PERSON RENAME TO person_temp;
 
   * 效果图
 
-    ![](/images/kudu/1550756387835.png)
+    ![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/1550756387835.png)
 
 #### 6.3.3 Remapping an external table to a different Kudu table ( 将外部表重新映射到不同的 Kudu 表 )
 
@@ -1920,7 +1920,7 @@ Table/Tablet/Replica视图级别的底层存储系统。
 • 可提供更为稳定的查询性能保障 
 ~~~
 
-![](/images/kudu/kudu.jpg)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/kudu.jpg)
 
 ~~~
 一张表会分成若干个tablet，每个tablet包括MetaData元信息及若干个RowSet，RowSet包含一个MemRowSet及
@@ -1946,7 +1946,7 @@ DeltaMem用于DiskRowSet中数据的变更mutation，先写到内存中，写满
 
 ~~~
 
-![](/images/kudu/rowSets.jpg)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/rowSets.jpg)
 
 ~~~
 MemRowSets可以对比理解成HBase中的MemStore, 而DiskRowSets可理解成HBase中的HFile。MemRowSets中
@@ -1966,7 +1966,7 @@ DisRowSets中的数据，按照32MB大小为单位，按序划分为一个个的
 
 ~~~
 
-![](/images/kudu/2717543-6241f2df6b4dbb47.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/2717543-6241f2df6b4dbb47.png)
 
 ~~~
 
@@ -1984,11 +1984,11 @@ DisRowSets中的数据，按照32MB大小为单位，按序划分为一个个的
 时，则将被拒绝。然后客户端将通过查询主服务器发现新领导者的位置来更新其缓存。
 ~~~
 
-![](/images/kudu/kudu-tablet.jpg)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/kudu-tablet.jpg)
 
 ### 7.4 kudu的写流程
 
-![](/images/kudu/2717543-cfe099f1632ff0dc.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/2717543-cfe099f1632ff0dc.png)
 
 
 	如上图，当 Client 请求写数据时，先根据主键从Master Server中获取要访问的目标 Tablets，然后到依次对应的Tablet获取数据。
@@ -2000,7 +2000,7 @@ DisRowSets中的数据，按照32MB大小为单位，按序划分为一个个的
 
 ### 7.5 kudu的读流程
 
-![](/images/kudu/2717543-cbe70fe73014af7d.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/2717543-cbe70fe73014af7d.png)
 
 ~~~
 	如上图，数据读取过程大致如下：先根据要扫描数据的主键范围，定位到目标的Tablets，然后读取Tablets 中的RowSets。
@@ -2010,7 +2010,7 @@ DisRowSets中的数据，按照32MB大小为单位，按序划分为一个个的
 
 ### 7.6 kudu的更新流程
 
-![](/images/kudu/2717543-87b1165b0bcc8206.png)
+![](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/2717543-87b1165b0bcc8206.png)
 
 ~~~
 	数据更新的核心是定位到待更新数据的位置，这块与写入的时候类似，就不展开了，等定位到具体位置后，然后将变更写到对应的delta store 中。

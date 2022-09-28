@@ -80,12 +80,11 @@ service kudu-tserver start
 ```bash
 sudo -u kudu kudu cluster ksck realtime-1,realtime-2,realtime-3
 ```
-
 - 直到 kudu ksck 文件正常
    - 未完成
-   - ![kudu01.png](/images/kudu/kudu01.png)
+   - ![kudu01.png](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/kudu01.png)
    - 已完成
-   - ![kudu02.png](/images/kudu/kudu03.png)
+   - ![kudu02.png](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/kudu03.png)
 
 5. 对剩余的 kudu tserver 重复前面的步骤 直到全部启动完成
 
@@ -99,4 +98,4 @@ service kudu-master start
 ```
 
 - 完成图
-- ![kudu03.png](/images/kudu/kudu02.png)
+- ![kudu03.png](https://yyhbook-1300437152.cos.ap-beijing.myqcloud.com/kudu/kudu02.png)
