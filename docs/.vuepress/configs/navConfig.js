@@ -94,6 +94,12 @@ const nav = [
                     '/noSqlDatabase/kudu/kuduUpgrade.md'
                 ],
             },
+            {
+                text: 'hive',
+                children: [
+                    '/noSqlDatabase/hive/README.md',
+                ],
+            },
         ],
     },
     // {
