@@ -8,6 +8,7 @@ module.exports = {
     description:'闻道有先后，术业有专攻',
     // 主题和它的配置
     theme: '@vuepress/theme-default',
+    plugins:['autobar'],
     themeConfig: {
         // logo: 'https://vuejs.org/images/logo.png',
         //导航栏

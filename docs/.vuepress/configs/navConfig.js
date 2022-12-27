@@ -36,26 +36,12 @@ const nav = [
                 text: 'java',
                 children: [
                     '/language/java/JVM.md',
-                    '/language/scala/distcp.md',
                 ],
             },
         ],
     },
     {
-        text: '消息队列',
-        children: [
-            {
-                text: 'kafka',
-                children: [
-                    '/MQ/kafka/kafka.md',
-                    '/MQ/kafka/kafkaCommand.md',
-                    '/MQ/kafka/sasl/kafkaSaslPlain.md',
-                ],
-            },
-        ],
-    },
-    {
-        text: 'sql数据库',
+        text: '数据存储',
         children: [
             {
                 text: 'mysql',
@@ -63,11 +49,6 @@ const nav = [
                     '/sqlDatabase/mysql/mysqlDump.md',
                 ],
             },
-        ],
-    },
-    {
-        text: 'nosql数据库',
-        children: [
             {
                 text: 'redis',
                 children: [
@@ -100,13 +81,15 @@ const nav = [
                     '/noSqlDatabase/hive/README.md',
                 ],
             },
+            {
+                text: 'kafka',
+                children: [
+                    '/MQ/kafka/kafka.md',
+                    '/MQ/kafka/kafkaCommand.md',
+                    '/MQ/kafka/sasl/kafkaSaslPlain.md',
+                ],
+            },
         ],
     },
-    // {
-    //     text: '数据迁移',
-    //     children: [
-    //         '/dataMigration',
-    //     ],
-    // }
 ];
 module.exports = nav;

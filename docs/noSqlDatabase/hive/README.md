@@ -3,7 +3,7 @@ lang: zh-CN
 title: hive 
 description: hive 
 ---
-##1 hive 乱码解决
+## 1 hive 乱码解决
 ```sql
 #修改字段注释字符集
 alter table COLUMNS_V2 modify column COMMENT varchar(256) character set utf8;
